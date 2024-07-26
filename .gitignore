@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache
+*.egg-info
+.DS_Store
+
+/poetry.lock
+/dist/
+/.coverage
+/coverage.xml

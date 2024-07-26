@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "getpass-dots"
+version = "0.0.1"
+description = "Like getpass but echo a mask dot/asterisk for each character"
+readme = "README.md"
+authors = ["Andy Brody <git@abrody.com>"]
+license = "MIT"
+homepage = "https://github.com/ab/getpass-dots"
+packages = [{include = "getpass_dots"}]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Development Status :: 3 - Alpha",
+]
+
+[tool.poetry.urls]
+Releases = "https://github.com/ab/getpass-dots/releases"
+Issues = "https://github.com/ab/getpass-dots/issues"
+
+[tool.poetry.scripts]
+askpass = "getpass_dots.askpass:main"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.10.0"
+coverage = "^7.3.2"
+ipdb = "^0.13.13"
+mypy = "^1.6.1"
+pytest = "^7.4.2"
+pytest-mock = "^3.12.0"
+
+[tool.poe.tasks]
+all = ["all-tests"]
+all-tests = ["black-check", "typecheck", "test"]
+black-check = "black --check --diff ."
+lint = "black"
+test = "pytest -v"
+typecheck = "mypy ."
+
+[tool.mypy]
+strict = true
+exclude = ["^tests/"]
+
+[[tool.mypy.overrides]]
+# modules that don't have mypy types
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
