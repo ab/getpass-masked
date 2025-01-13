@@ -14,19 +14,23 @@ from . import getpass_dots
 
 def main():
     p = optparse.OptionParser(
-        usage='usage: %prog [OPTIONS] [PROMPT]' + __doc__.rstrip('\n')
+        usage="usage: %prog [OPTIONS] [PROMPT]" + __doc__.rstrip("\n")
     )
-    p.add_option('-n', '--newline', help='print trailing newline',
-                 action='store_true')
-    p.add_option('-m', '--mask', metavar='CHAR', default="•",
-                 help='Use CHAR as mask character (empty to disable)')
+    p.add_option("-n", "--newline", help="print trailing newline", action="store_true")
+    p.add_option(
+        "-m",
+        "--mask",
+        metavar="CHAR",
+        default="•",
+        help="Use CHAR as mask character (empty to disable)",
+    )
 
     opts, args = p.parse_args()
 
     if args:
-        prompt = ' '.join(args)
+        prompt = " ".join(args)
     else:
-        prompt = 'Password: '
+        prompt = "Password: "
 
     out_stream = sys.stdout
 
@@ -39,7 +43,7 @@ def main():
 
     out_stream.write(pw)
     if opts.newline:
-        out_stream.write('\n')
+        out_stream.write("\n")
 
 
 if __name__ == "__main__":

@@ -9,18 +9,16 @@ from .errors import GetpassError
 
 class WindowsGetpass(AbstractGetpass):
     def __init__(
-          self,
-          input: Optional[TextIO] = None,
-          output: Optional[TextIO] = None,
-          strip_escapes: bool = True,
+        self,
+        input: Optional[TextIO] = None,
+        output: Optional[TextIO] = None,
+        strip_escapes: bool = True,
     ) -> None:
         if input is not None:
             raise ValueError("Setting input stream not supported on Windows")
         if output is None:
             output = sys.stderr
-        super().__init__(
-            input=input, output=output, strip_escapes=strip_escapes
-        )
+        super().__init__(input=input, output=output, strip_escapes=strip_escapes)
 
     def input_setup(self) -> None:
         """No setup needed on windows"""
@@ -41,9 +39,7 @@ class WindowsGetpass(AbstractGetpass):
         """
 
         if self.input is not sys.__stdin__:
-            raise GetpassError(
-                "Input other than stdin not supported on Windows"
-            )
+            raise GetpassError("Input other than stdin not supported on Windows")
 
         while True:
             ch = msvcrt.getwch()

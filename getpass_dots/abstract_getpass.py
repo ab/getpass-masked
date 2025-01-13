@@ -62,7 +62,6 @@ class AbstractGetpass(AbstractContextManager):
         self.output.flush()
 
     def read_input(self, prompt: str = "Password: ", mask: str = "•") -> str:
-
         # verify that context manager was called
         if not self.inside_with:
             raise ValueError("Must be called inside 'with' block")

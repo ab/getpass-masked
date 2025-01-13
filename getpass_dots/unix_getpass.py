@@ -62,7 +62,7 @@ class UnixGetpass(AbstractGetpass):
 
         # dump unread input, add TCSASOFT (BSD-only)
         tcsetattr_flags = termios.TCSAFLUSH
-        if hasattr(termios, 'TCSASOFT'):
+        if hasattr(termios, "TCSASOFT"):
             tcsetattr_flags |= termios.TCSASOFT
 
         # set TTY to raw mode, disabling echo
@@ -76,6 +76,7 @@ class UnixGetpass(AbstractGetpass):
         Read the next character from stdin, optionally skipping past any ANSI
         escape sequences.
         """
+
         def getch() -> str:
             # termios.tcflush(self.input_handle.fileno(), termios.TCIFLUSH)
             return self.input_handle.read(1)
