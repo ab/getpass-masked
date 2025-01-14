@@ -58,6 +58,7 @@ class AbstractGetpass(AbstractContextManager):
         raise NotImplementedError
 
     def print_prompt(self, prompt: str) -> None:
+        assert self.output is not None
         self.output.write(prompt)
         self.output.flush()
 
@@ -82,6 +83,7 @@ class AbstractGetpass(AbstractContextManager):
         """
 
         password: List[str] = []
+        assert self.output is not None
 
         while True:
             key = ord(self.getchar())

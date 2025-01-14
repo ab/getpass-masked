@@ -1,5 +1,9 @@
-import msvcrt
 import sys
+
+if sys.platform != "win32":
+    raise ImportError("windows_getpass.py works on sys.platform == 'win32'")
+
+import msvcrt
 
 from typing import Optional, TextIO
 
