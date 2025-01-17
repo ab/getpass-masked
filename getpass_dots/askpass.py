@@ -2,8 +2,8 @@
 Prompt the user for a password and print the result on stdout.
 
 The password prompt will be printed to the TTY or to stderr. Input is read from
-stdin and terminated by a newline. The result is written verbatim with no
-trailing newline to stdout.
+the TTY or stdin and terminated by a newline. The result is written verbatim
+with no trailing newline to stdout.
 """
 
 import optparse
