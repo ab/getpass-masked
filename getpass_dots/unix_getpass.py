@@ -15,7 +15,9 @@ class UnixGetpass(AbstractGetpass):
         if self.input:
             # user-specified input stream
             if not self.input.isatty():
-                raise NoTTYError("Provided input argument is not a TTY")
+                raise NoTTYError(
+                    f"Provided input argument is not a TTY: {self.input!r}"
+                )
 
             fd = self.input.fileno()
             self.input_handle = self.input

@@ -24,6 +24,12 @@ def main():
         default="•",
         help="Use CHAR as mask character (empty to disable)",
     )
+    p.add_option(
+        "--no-dev-tty",
+        dest="skip_dev_tty",
+        action="store_true",
+        help="Don't try to read/write directly to /dev/tty",
+    )
 
     opts, args = p.parse_args()
 
@@ -34,8 +40,15 @@ def main():
 
     out_stream = sys.stdout
 
+    pwin = None
+    pwout = None
+
+    if opts.skip_dev_tty:
+        pwin = sys.stdin
+        pwout = sys.stderr
+
     try:
-        pw = getpass_dots(prompt=prompt, mask=opts.mask)
+        pw = getpass_dots(prompt=prompt, mask=opts.mask, input=pwin, output=pwout)
     except EOFError:
         sys.exit(1)
     except KeyboardInterrupt:
