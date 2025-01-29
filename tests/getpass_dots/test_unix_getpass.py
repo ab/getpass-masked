@@ -1,16 +1,19 @@
 import contextlib
 import itertools
-from collections import namedtuple
 from io import StringIO
 from unittest.mock import Mock
-from typing import Any
+from typing import Any, NamedTuple
 
 import pytest
 
 from getpass_dots.unix_getpass import UnixGetpass
 
-_fields = ("label", "input", "expected", "raises")
-Case = namedtuple("Case", _fields, defaults=(None,) * len(_fields))
+
+class Case(NamedTuple):
+    label: str
+    input: Any
+    expected: Any = None
+    raises: Any = None
 
 
 def fake_tty(initial_value: str = "", fd_counter=itertools.count(1000)) -> Mock:
